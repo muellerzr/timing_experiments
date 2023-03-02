@@ -141,6 +141,8 @@ def training_function(config, args):
 
     # Now we train the model
     t_start = time.time()
+    avg_time = 0
+    num_batches = 0
     for _ in range(num_epochs):
         model.train()
         for step, batch in enumerate(train_dataloader):
@@ -161,8 +163,10 @@ def training_function(config, args):
                 optimizer.zero_grad()
                 elapsed_time = time.time() - t_start
                 # Use accelerator.print to print only on the main process.
-                accelerator.print(f'Time elapsed: {elapsed_time}')
+                avg_time += elapsed_time
+                num_batches += 1
                 t_start = time.time()
+    accelerator.print(f"Average batch time: {avg_time / num_batches:.2f}s")
 
 
 def main():
@@ -178,7 +182,7 @@ def main():
     )
     parser.add_argument("--cpu", action="store_true", help="If passed, will train on the CPU.")
     args = parser.parse_args()
-    config = {"lr": 2e-5, "num_epochs": 3, "seed": 42, "batch_size": 16, "gradient_accumulation_steps": 4}
+    config = {"lr": 2e-5, "num_epochs": 1, "seed": 42, "batch_size": 16, "gradient_accumulation_steps": 4}
     training_function(config, args)
 
 
