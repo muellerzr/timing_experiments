@@ -161,7 +161,7 @@ def training_function(config, args):
                 optimizer.zero_grad()
                 elapsed_time = time.time() - t_start
                 # Use accelerator.print to print only on the main process.
-                accelerator.print(f'Time elapsed: {elapsed_time - t_start}')
+                accelerator.print(f'Time elapsed: {elapsed_time}')
                 t_start = time.time()
 
 
