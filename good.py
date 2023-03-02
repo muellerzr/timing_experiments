@@ -67,7 +67,7 @@ def get_dataloaders(accelerator: Accelerator, batch_size: int = 16):
 
     # Apply the method we just defined to all the examples in all the splits of the dataset
     # starting with the main process first:
-    with accelerator.main_process_first():
+    with accelerator.local_main_process_first():
         tokenized_datasets = datasets.map(
             tokenize_function,
             batched=True,
