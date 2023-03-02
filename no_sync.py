@@ -153,6 +153,7 @@ def training_function(config, args):
                     outputs = model(**batch)
                     loss = outputs.loss
                     loss = loss / gradient_accumulation_steps
+                    accelerator.backward(loss)
             else:
                 outputs = model(**batch)
                 loss = outputs.loss
