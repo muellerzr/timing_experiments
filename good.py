@@ -97,8 +97,9 @@ def get_dataloaders(accelerator: Accelerator, batch_size: int = 16):
 
 def training_function(config, args):
     # Initialize accelerator
-    num_epochs = int(config["gradient_accumulation_steps"])
+    gradient_accumulation_steps = int(config["gradient_accumulation_steps"])
     accelerator = Accelerator(cpu=args.cpu, mixed_precision=args.mixed_precision, gradient_accumulation_steps=gradient_accumulation_steps)
+    accelerator.print(f'Training with config: {config}')
     # Sample hyper-parameters for learning rate, batch size, seed and a few other HPs
     lr = config["lr"]
     num_epochs = int(config["num_epochs"])
