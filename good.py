@@ -163,7 +163,7 @@ def training_function(config, args):
                 # Use accelerator.print to print only on the main process.
                 t_start = time.time()
 
-    accelerator.print(f"Average batch time: {avg_time / num_batches:.2f} s")
+    accelerator.print(f"Average batch time: {avg_time / num_batches:.2f}s, Num batches: {num_batches}")
 
 
 def main():

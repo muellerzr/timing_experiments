@@ -164,7 +164,7 @@ def training_function(config, args):
                 avg_time += elapsed_time
                 num_batches += 1
                 t_start = time.time()
-    accelerator.print(f"Average batch time: {avg_time / num_batches:.2f} s")
+    accelerator.print(f"Average batch time: {avg_time / num_batches:.2f}s, Num batches: {num_batches}")
 
 
 def main():
